@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+        }
+
+
+        .left-half {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;            
+            background-image: url("1.webp");
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease-in-out, transform 0s ease-in-out; /* Added transform for sliding animation */
+            z-index: 0; /* Set a lower z-index to stay behind the circles */
+        }
+
+        .right-half {
+            /* height: 100%; */
+            position: absolute;
+            /* top: 100px; */
+            right: 200px;
+            left: 800px;
+            bottom: 50px;
+            width: 50%;            
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            /* padding: 20px;    */
+            box-sizing: border-box;
+        }
+
+        .circle-container {
+            top: 180px;
+            position: relative;
+            z-index: 1; /* */
+        }
+
+        .circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-bottom: 8px;
+            background-size: cover;
+            border: 2px;
+            border-color: wheat;
+            cursor: pointer;
+        }
+
+        .circle:hover {
+            border-color: wheat; /* Change border color on hover */
+        }
+
+        .circle.clicked {
+            border-color: wheat; /* Change border color when clicked */
+        }
+        .fixed-image {
+    position: absolute;
+    top: -20px;
+    left: 120px; /* Adjust this value to move the image to the right */
+    right: 100px;
+    width: 200px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    background-image: url("logo-removebg-preview.png"); /* Replace with your fixed image */
+    background-size: cover;
+    background-position: top left;
+    z-index: 2;
+}
+.title {
+    font-size: 24px; /* Adjust as needed */
+    font-weight: bold; /* Adjust as needed */
+    color: #000; /* Adjust as needed */
+    margin-bottom: 20px; /* Adjust as needed */
+}
+
+.tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid black;
+        border-top: none;
+        border-radius: 10%;
+        width: 440px;
+      }
+.reviews {
+        color: gold;
+        align-items: center;
+        text-align: left;
+        margin: 10px 0;
+      }
+.container {
+            display: flex;
+            justify-content: space-between;
+            width: 200px; /* Adjust as needed */
+            padding: 10px;
+            border: 1px solid #000; /* Adjust as needed */
+        }
+
+        .purchase-options {
+        margin: 20px 0;
+      }
+        .container1 {
+            display: flex;
+            justify-content: space-between;
+            width: 400px; 
+            height: 100pt;
+            padding: 20px;
+            background-color: white;
+            
+        }
+
+        .quantity-box {
+            width: 80px; 
+            height: 50px;
+            flex-grow: 1;
+            text-align: center;
+            padding: 10px;
+            border: 1px dashed #000000;
+            line-height: 30px;
+            border-radius: 15px;
+            margin: 10px;
+            cursor: pointer;
+            
+        }
+        .quantity-box.selected {
+    background-color: #4CAF50; /* Change the color as needed */
+    color: white; /* Change the color as needed */
+}
+        .button {
+            width: 55%; /* Adjust as needed */
+            padding: 10px; /* Adjust as needed */
+            margin-bottom: 10px; /* Adjust as needed */
+            /* background-color: aqua; */
+            color: black; /* Adjust as needed */
+            border: 1px; /* Adjust as needed */
+            border-style: dashed;
+            cursor: pointer; /* Adjust as needed */
+            
+            text-align: center; /* Adjust as needed */
+        }        
+
+        .image1 { background-image: url('1.webp');}
+        .image2 { background-image: url('2.webp'); }
+        .image3 { background-image: url('3.webp'); }
+        .image4 { background-image: url('4.webp'); }
+        .image5 { background-image: url('5.webp'); }
+        .image6 { background-image: url('6.webp'); }
+    </style>
+</head>
+<body style="background-color: rgb(246, 228, 199)">
+    <div class="container">
+        <div class="fixed-image"></div>        
+        <div class="left-half"></div>
+            <div class="circle-container">
+                <div class="circle image1" id="1" onclick="showImage('1.webp', this)"></div>
+                <div class="circle image2" id="2" onclick="showImage('2.webp', this)"></div>
+                <div class="circle image3" id="3" onclick="showImage('3.webp', this)"></div>
+                <div class="circle image4" id="4" onclick="showImage('4.webp', this)"></div>
+                <div class="circle image5" id="5" onclick="showImage('5.webp', this)"></div>
+                <div class="circle image6" id="6" onclick="showImage('6.webp', this)"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="right-half">
+        <div class="title" style="font-size: 30pt; align-items: center;">"Drizzle" & "Sizzle"</div>
+        <h2 style="text-decoration: underline; font-size: 20pt;">Extra Virgin Olive Oil</h2>
+        <div class="reviews">
+            <span class="star-rating">★★★★★</span>
+            885 Reviews
+        </div>
+        <!-- Rest of your code -->
+        <p>Quantity</p><br>
+        <div class="container1">
+            <div id="quantity1" style="width: 120pt; height: 80pt; font-size: 12pt;" class="quantity-box" onclick="selectQuantity(1, this) " >1 Set <br> +10% off</div>
+            <div id="quantity2" style="width: 130pt; height: 80pt; font-size: 11.5pt;" class="quantity-box" onclick="selectQuantity(2, this)">2 Sets <br> Free Shipping <br> +14% off</div>
+            <div id="quantity3" style="width: 130pt; height: 80pt; font-size: 11.5pt;" class="quantity-box" onclick="selectQuantity(3, this)">3 Sets <br> Free Shipping <br> +15% off</div>
+            <div id="quantity4" style="width: 130pt; height: 80pt; font-size: 11.5pt;" class="quantity-box" onclick="selectQuantity(4, this)">6 Sets <br> Free Shipping <br> +17% off</div>            
+        </div>
+
+        <div class="purchase-options" style="background-color: white; width: 440px;">
+            <input type="radio" name="purchase" id="one-time" onclick="updatePrice(selectedQuantity)" />
+            <label for="one-time">One Time Purchase</label>
+            <br />
+            <input type="radio" name="purchase" id="subscribe" checked onclick="updatePrice(selectedQuantity)" />
+            <label for="subscribe">Subscribe & Save</label>
+        </div>
+        <button class="button" id="add-to-cart" style="background-color: rgb(144, 210, 30); width: 440px;">Add to Cart</button>
+        
+    <div class="tabular">
+        <div class="tab"style="background-color: gray; width: 480px; text-align: center; ">
+          <button class="tablinks" onclick="table1(event, 'Description')">
+            DESCRIPTION
+          </button>
+          <button class="tablinks" onclick="table1(event, 'Harvest')">
+            HARVEST
+          </button>
+          <button class="tablinks" onclick="table1(event, 'UseCases')">
+            USE CASES
+          </button>
+        </div>
+
+        <div id="Description" class="tabcontent">
+          <h3>DRIZZLE: 500ML</h3>
+          <p>
+            Extra Virgin finishing oil made from olives that are picked early,
+            when flavor is bold and antioxidants are highest. Made for eating,
+            never heating.
+          </p>
+          <h3>SIZZLE: 750ML</h3>
+          <p>
+            Extra Virgin cooking oil made from mature, mid-season olives that
+            yield a more mellow flavor. Use it every day, in every way.
+          </p>
+        </div>
+
+        <div id="Harvest" class="tabcontent">
+          <h3>DRIZZLE: 500ML</h3>
+          <p>
+            Extra Virgin finishing oil made from olives that are picked early,
+            when flavor is bold and antioxidants are highest. Made for eating,
+            never heating.
+          </p>
+          <h3>SIZZLE: 750ML</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
+            debitis nobis ratione nesciunt quam laboriosam id vero rerum
+            architecto veniam omnis tenetur, ipsa error aut non sit! Fugiat,
+            porro alias.
+          </p>
+        </div>
+        <div id="UseCases" class="tabcontent">
+          <h3>DRIZZLE: 500ML</h3>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem
+            autem officiis quam quisquam molestias assumenda officia alias
+            quasi, nihil, veritatis excepturi culpa recusandae eius earum
+            eaque temporibus optio dolore illo.
+          </p>
+          <h3>SIZZLE: 750ML</h3>
+          <p>
+            Extra Virgin cooking oil made from mature, mid-season olives that
+            yield a more mellow flavor. Use it every day, in every way.
+          </p>
+        </div>
+
+    </div>
+
+      
+    <script>
+        function table1(e, name){
+            var k,tcontent,tlink;
+            tcontent = document.getElementsByClassName("tabcontent");
+            for(k=0;k<tcontent.length;k++){
+                tcontent[k].style.display = "none";
+            }
+            tlink = document.getElementsByClassName("tablinks");
+            for(k=0;k<tlink.length;k++){
+                tlink[k].className = tlink[k].className.replace(" active","");
+            }                        
+            document.getElementById(name).style.display = "block";
+            e.currentTarget.className += " active";
+
+        }
+
+       var prices = [37, 69, 102, 199]; // Prices for each quantity
+        var selectedQuantity = 1; // Default quantity
+
+        function selectQuantity(quantity, element) {
+            // Remove the 'selected' class from all quantity boxes
+            var quantityBoxes = document.getElementsByClassName('quantity-box');
+            for (var i = 0; i < quantityBoxes.length; i++) {
+                quantityBoxes[i].classList.remove('selected');
+            }
+
+            // Add the 'selected' class to the clicked quantity box
+            element.classList.add('selected');
+
+            // Update the price
+            updatePrice(quantity);
+        }
+
+        function updatePrice(quantity) {
+            var price = prices[quantity - 1];
+            var purchaseOption = document.querySelector('input[name="purchase"]:checked').id;
+            var priceText = 'Add to Cart - $' + price;
+
+            if (purchaseOption === 'subscribe') {
+                priceText += ' (Subscribe & Save)';
+            }
+
+            document.getElementById('add-to-cart').innerText = priceText;
+        }
+
+var currentImage = 1; // Start with the first image
+
+function showImage(imagePath, clickedCircle) {
+    var leftHalf = document.querySelector('.left-half');
+    var newImage = parseInt(clickedCircle.id); // Get the id of the clicked circle
+
+    // Determine the direction of the transition
+    var direction = newImage > currentImage ? '100%' : '-100%';
+
+    leftHalf.style.transform = 'translateX(' + direction + ')'; // Slide to the left or right
+
+    setTimeout(function() {
+        leftHalf.style.backgroundImage = 'url(' + imagePath + ')';
+        leftHalf.style.transform = 'translateX(0)'; // Slide back to the original position
+
+        // Remove 'clicked' class from all circles
+        document.querySelectorAll('.circle').forEach(circle => {
+            circle.classList.remove('clicked');
+        });
+
+        // Add 'clicked' class to the clicked circle
+        clickedCircle.classList.add('clicked');
+
+        // Update the current image
+        currentImage = newImage;
+    }, 5);
+}
+
+    </script>
+</body>
+</html>
